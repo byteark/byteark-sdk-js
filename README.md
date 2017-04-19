@@ -5,11 +5,11 @@
 
 ## Installation
 
-You may install this SDK via [NPM](https://npmjs.org)
+For NodeJS, You may install this SDK via [NPM](https://npmjs.org)
 
     npm install byteark/byteark-sdk-js
 
-## Usage
+## Usage with ES6
 
 Now the only feature availabled is creating signed URL with ByteArk Signature Version 2
 
