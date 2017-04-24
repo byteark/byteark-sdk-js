@@ -1,0 +1,40 @@
+{
+  "name": "byteark-sdk",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byteark/byteark-sdk-js.git"
+  },
+  "main": "dist/byteark-sdk.umd.js",
+  "module": "dist/byteark-sdk.es.js",
+  "jsnext:main": "dist/byteark-sdk.es.js",
+  "scripts": {
+    "prebuild": "eslint lib test",
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "pretest": "npm run build",
+    "test": "mocha",
+    "prepublish": "npm test"
+  },
+  "dependencies": {
+    "md5": "^2.2.1",
+    "qs": "^6.4.0",
+    "url-parse": "^1.1.8"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.2",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "babelrc-rollup": "^3.0.0",
+    "eslint": "^3.19.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "release-it": "^2.7.1",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-istanbul": "^1.1.0",
+    "rollup-watch": "^3.2.2"
+  }
+}
