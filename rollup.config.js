@@ -3,7 +3,6 @@ import babelrc from 'babelrc-rollup';
 import istanbul from 'rollup-plugin-istanbul';
 
 let pkg = require('./package.json');
-let external = Object.keys(pkg.dependencies);
 
 export default {
   entry: 'lib/index.js',
@@ -11,9 +10,9 @@ export default {
     babel(babelrc()),
     istanbul({
       exclude: ['test/**/*', 'node_modules/**/*']
-    })
+    }),
   ],
-  external: external,
+  external: ['md5', 'qs', 'url-parse'],
   targets: [
     {
       dest: pkg.main,
