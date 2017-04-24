@@ -1,19 +1,19 @@
 # ByteArk SDK for js
 
-[![Packagist Version](https://img.shields.io/packagist/v/byteark/byteark-sdk-js.svg?style=flat)](https://packagist.org/packages/byteark/byteark-sdk-js)
+[![NPM Version](https://img.shields.io/byteark-sdk/v/byteark-sdk.svg)](https://packagist.org/packages/byteark-sdk)
 [![Build Status](https://travis-ci.org/byteark/byteark-sdk-js.svg?branch=master)](https://travis-ci.org/byteark/byteark-sdk-js)
 
 ## Installation
 
 For NodeJS, You may install this SDK via [NPM](https://npmjs.org)
 
-    npm install byteark/byteark-sdk-js
+    npm install byteark-sdk
 
-## Usage with ES6
+## Usages
 
 Now the only feature availabled is creating signed URL with ByteArk Signature Version 2
 
-### ES6
+### Usage using ES6
 
 ```javascript
 import { ByteArkV2UrlSigner } from 'byteark-sdk';
@@ -42,7 +42,7 @@ http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8
 */
 ```
 
-## CommonJS
+## Usage using CommonJS
 
 ```javascript
 var byteark = require('byteark-sdk');
