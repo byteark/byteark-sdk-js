@@ -1,18 +1,20 @@
 import babel from 'rollup-plugin-babel';
 import babelrc from 'babelrc-rollup';
 import istanbul from 'rollup-plugin-istanbul';
+import resolve from 'rollup-plugin-node-resolve';
 
 let pkg = require('./package.json');
 
 export default {
   entry: 'lib/index.js',
   plugins: [
+    resolve(),
     babel(babelrc()),
     istanbul({
       exclude: ['test/**/*', 'node_modules/**/*']
     }),
   ],
-  external: ['md5', 'qs', 'url-parse'],
+  external: ['crypto', 'qs', 'url-parse'],
   targets: [
     {
       dest: pkg.main,
