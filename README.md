@@ -1,6 +1,6 @@
 # ByteArk SDK for js
 
-[![NPM Version](https://img.shields.io/byteark-sdk/v/jquery.svg)](https://cdnjs.com/libraries/byteark-sdk)
+[![NPM Version](https://img.shields.io/npm/v/byteark-sdk.svg)](https://www.npmjs.com/package/byteark-sdk)
 [![Build Status](https://travis-ci.org/byteark/byteark-sdk-js.svg?branch=master)](https://travis-ci.org/byteark/byteark-sdk-js)
 
 ## Installation
