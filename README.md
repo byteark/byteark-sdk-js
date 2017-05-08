@@ -1,6 +1,6 @@
 # ByteArk SDK for js
 
-[![NPM Version](https://img.shields.io/byteark-sdk/v/byteark-sdk.svg)](https://packagist.org/packages/byteark-sdk)
+[![NPM Version](https://img.shields.io/byteark-sdk/v/jquery.svg)](https://cdnjs.com/libraries/byteark-sdk)
 [![Build Status](https://travis-ci.org/byteark/byteark-sdk-js.svg?branch=master)](https://travis-ci.org/byteark/byteark-sdk-js)
 
 ## Installation
@@ -27,18 +27,18 @@ const signedUrl = signer->sign(
     'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8',
     1514764800,
     [
-        'client-ip' => '103.253.132.65',
+        'client_ip' => '103.253.132.65',
     ]
 );
 
 /*
 Got this url:
 http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8
-    ?x-ark-access-id=2Aj6Wkge4hi1ZYLp0DBG
-    &x-ark-auth-type=ark-v2
-    &x-ark-expires=1514764800
-    &x-ark-sign-client-ip=1
-    &x-ark-signature=57aebae531c3d582029fc2440d3ff132
+    ?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG
+    &x_ark_auth_type=ark-v2
+    &x_ark_client_ip=1
+    &x_ark_expires=1514764800
+    &x_ark_signature=57aebae531c3d582029fc2440d3ff132
 */
 ```
 
