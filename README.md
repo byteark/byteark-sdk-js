@@ -38,7 +38,7 @@ http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8
     &x_ark_auth_type=ark-v2
     &x_ark_client_ip=1
     &x_ark_expires=1514764800
-    &x_ark_signature=57aebae531c3d582029fc2440d3ff132
+    &x_ark_signature=Gr9T_ZdHDy8l8CCPxpFjNg
 */
 ```
 
