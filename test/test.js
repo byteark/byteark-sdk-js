@@ -22,6 +22,37 @@ describe('ByteArkV2UrlSigner', () => {
     );
   });
 
+  it('Returns valid signed URL, even if it is called twice, cheer up baby', () => {
+    const signer = new ByteArkV2UrlSigner({
+      access_id: '2Aj6Wkge4hi1ZYLp0DBG',
+      access_secret: '31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7',
+    });
+    const signedUrl = signer.sign(
+      'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8',
+      1514764800
+    );
+    strictEqual(
+      signedUrl,
+      'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
+        + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
+        + '&x_ark_auth_type=ark-v2'
+        + '&x_ark_expires=1514764800'
+        + '&x_ark_signature=cLwtn96a-YPY7jt8ZKSf_Q'
+    );
+    const anotherSignedUrl = signer.sign(
+      'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8',
+      1514764800
+    );
+    strictEqual(
+      anotherSignedUrl,
+      'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
+        + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
+        + '&x_ark_auth_type=ark-v2'
+        + '&x_ark_expires=1514764800'
+        + '&x_ark_signature=cLwtn96a-YPY7jt8ZKSf_Q'
+    );
+  });
+
   it('Returns valid signed URL with custom HTTP method', () => {
     const signer = new ByteArkV2UrlSigner({
       access_id: '2Aj6Wkge4hi1ZYLp0DBG',
