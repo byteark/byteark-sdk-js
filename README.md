@@ -5,7 +5,7 @@
 
 ## Installation
 
-For NodeJS, You may install this SDK via [NPM](https://npmjs.org)
+For NodeJS 5+, You may install this SDK via [NPM](https://npmjs.org)
 
     npm install byteark-sdk
 
