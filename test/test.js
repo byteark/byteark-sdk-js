@@ -1,4 +1,4 @@
-import { strictEqual } from 'assert';
+import assert from 'assert';
 import { ByteArkV2UrlSigner } from '..';
 
 describe('ByteArkV2UrlSigner', () => {
@@ -12,7 +12,7 @@ describe('ByteArkV2UrlSigner', () => {
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8',
       1514764800
     );
-    strictEqual(
+    assert.strictEqual(
       signedUrl,
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
         + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
@@ -31,7 +31,7 @@ describe('ByteArkV2UrlSigner', () => {
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8',
       1514764800
     );
-    strictEqual(
+    assert.strictEqual(
       signedUrl,
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
         + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
@@ -43,7 +43,7 @@ describe('ByteArkV2UrlSigner', () => {
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8',
       1514764800
     );
-    strictEqual(
+    assert.strictEqual(
       anotherSignedUrl,
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
         + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
@@ -63,7 +63,7 @@ describe('ByteArkV2UrlSigner', () => {
       1514764800,
       { 'method': 'HEAD' },
     );
-    strictEqual(
+    assert.strictEqual(
       signedUrl,
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
         + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
@@ -83,7 +83,7 @@ describe('ByteArkV2UrlSigner', () => {
       1514764800,
       { 'client_ip': '103.253.132.65' },
     );
-    strictEqual(
+    assert.strictEqual(
       signedUrl,
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
         + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
@@ -104,7 +104,7 @@ describe('ByteArkV2UrlSigner', () => {
       1514764800,
       { 'client-ip': '103.253.132.65' },
     );
-    strictEqual(
+    assert.strictEqual(
       signedUrl,
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
         + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
@@ -130,7 +130,7 @@ describe('ByteArkV2UrlSigner', () => {
           + 'Chrome/58.0.3029.68 Safari/537.36',
       },
     );
-    strictEqual(
+    assert.strictEqual(
       signedUrl,
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
         + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
@@ -152,7 +152,7 @@ describe('ByteArkV2UrlSigner', () => {
       1514764800,
       { 'client-ip': '103.253.132.65', 'path_prefix': '/video-objects/QDuxJm02TYqJ/' },
     );
-    strictEqual(
+    assert.strictEqual(
       signedUrl,
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
         + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
@@ -175,7 +175,7 @@ describe('ByteArkV2UrlSigner', () => {
       1514764800,
       { 'client-ip': '103.253.132.65', 'path_prefix': '/video-objects/QDuxJm02TYqJ/' },
     );
-    strictEqual(
+    assert.strictEqual(
       signedUrl,
       'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
         + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
@@ -187,4 +187,54 @@ describe('ByteArkV2UrlSigner', () => {
     );
   });
 
+  it('Validate valid signed URL', () => {
+    const signer = new ByteArkV2UrlSigner({
+      access_id: '2Aj6Wkge4hi1ZYLp0DBG',
+      access_secret: '31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7',
+    });
+    const result = signer.verify(
+      'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
+        + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
+        + '&x_ark_auth_type=ark-v2'
+        + '&x_ark_expires=1514764800'
+        + '&x_ark_signature=cLwtn96a-YPY7jt8ZKSf_Q',
+      1514764700
+    );
+    assert.strictEqual(
+      result,
+      true
+    );
+  });
+
+  it('Invalidate signed URL with invalid signature', () => {
+    const signer = new ByteArkV2UrlSigner({
+      access_id: '2Aj6Wkge4hi1ZYLp0DBG',
+      access_secret: '31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7',
+    });
+    const callingVerify = () => signer.verify(
+      'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
+        + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
+        + '&x_ark_auth_type=ark-v2'
+        + '&x_ark_expires=1514764800'
+        + '&x_ark_signature=cLwtn96a-YPY7jt8ZKSf_R',
+      1514764700
+    );
+    assert.throws(callingVerify, Error);
+  });
+
+  it('Invalidate expired signed URL', () => {
+    const signer = new ByteArkV2UrlSigner({
+      access_id: '2Aj6Wkge4hi1ZYLp0DBG',
+      access_secret: '31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7',
+    });
+    const callingVerify = () => signer.verify(
+      'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
+        + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
+        + '&x_ark_auth_type=ark-v2'
+        + '&x_ark_expires=1514764800'
+        + '&x_ark_signature=cLwtn96a-YPY7jt8ZKSf_Q',
+      1514764900
+    );
+    assert.throws(callingVerify, Error);
+  });
 });

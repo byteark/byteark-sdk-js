@@ -1,6 +1,5 @@
 import babel from 'rollup-plugin-babel';
 import babelrc from 'babelrc-rollup';
-import istanbul from 'rollup-plugin-istanbul';
 import resolve from 'rollup-plugin-node-resolve';
 
 let pkg = require('./package.json');
@@ -10,12 +9,13 @@ export default {
   plugins: [
     resolve(),
     babel(babelrc()),
-    istanbul({
-      exclude: ['test/**/*', 'node_modules/**/*']
-    }),
   ],
   external: ['crypto', 'qs', 'url-parse'],
   targets: [
+    {
+      dest: pkg.cjs,
+      format: 'cjs'
+    },
     {
       dest: pkg.main,
       format: 'umd',
@@ -27,5 +27,10 @@ export default {
       format: 'es',
       sourceMap: true
     }
-  ]
+  ],
+  globals: {
+    crypto: 'crypto',
+    qs: 'qs',
+    'url-parse': 'urlParse'
+  }
 };
