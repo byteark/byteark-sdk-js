@@ -73,6 +73,27 @@ describe('ByteArkV2UrlSigner', () => {
     );
   });
 
+  it('Returns valid signed URL with path prefix', () => {
+    const signer = new ByteArkV2UrlSigner({
+      access_id: '2Aj6Wkge4hi1ZYLp0DBG',
+      access_secret: '31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7',
+    });
+    const signedUrl = signer.sign(
+      'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8',
+      1514764800,
+      { 'path_prefix': '/video-objects/QDuxJm02TYqJ/' },
+    );
+    assert.strictEqual(
+      signedUrl,
+      'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqJ/playlist.m3u8'
+        + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
+        + '&x_ark_auth_type=ark-v2'
+        + '&x_ark_expires=1514764800'
+        + '&x_ark_path_prefix=%2Fvideo-objects%2FQDuxJm02TYqJ%2F'
+        + '&x_ark_signature=334wInm0jKfC6LCm23zndA'
+    );
+  });
+
   it('Returns valid signed URL with client IP', () => {
     const signer = new ByteArkV2UrlSigner({
       access_id: '2Aj6Wkge4hi1ZYLp0DBG',
@@ -217,6 +238,23 @@ describe('ByteArkV2UrlSigner', () => {
         + '&x_ark_auth_type=ark-v2'
         + '&x_ark_expires=1514764800'
         + '&x_ark_signature=cLwtn96a-YPY7jt8ZKSf_R',
+      1514764700
+    );
+    assert.throws(callingVerify, Error);
+  });
+
+  it('Invalidate signed URL with invalid path prefix', () => {
+    const signer = new ByteArkV2UrlSigner({
+      access_id: '2Aj6Wkge4hi1ZYLp0DBG',
+      access_secret: '31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7',
+    });
+    const callingVerify = () => signer.verify(
+      'http://inox.qoder.byteark.com/video-objects/QDuxJm02TYqK/playlist.m3u8'
+        + '?x_ark_access_id=2Aj6Wkge4hi1ZYLp0DBG'
+        + '&x_ark_auth_type=ark-v2'
+        + '&x_ark_expires=1514764800'
+        + '&x_ark_path_prefix=%2Fvideo-objects%2FQDuxJm02TYqJ%2F'
+        + '&x_ark_signature=334wInm0jKfC6LCm23zndA',
       1514764700
     );
     assert.throws(callingVerify, Error);
