@@ -18,9 +18,17 @@ For NodeJS 5+, You may install this SDK via [NPM](https://npmjs.org)
 
 ## Usages
 
-Now the only feature availabled is creating signed URL with ByteArk Signature Version 2
+Now the only feature availabled is creating signed URL with ByteArk Signature Version 2.
+
+First, create a ByteArkV2UrlSigner instance with access_id and access_secret. (access_id is currently optional for ByteArk Fleet).
+
+Then, call sign method with URL to sign, Unix timestamp that the URL should expired, and sign options.
+
+For sign options argument, you may include method, which determines which HTTP method is allowed (GET is the default is not determined), and may includes custom policies.
 
 ### Usage using ES6
+
+The following example will create a signed URL that allows to GET the resource within 1st January 2018:
 
 ```javascript
 import { ByteArkV2UrlSigner } from 'byteark-sdk';
