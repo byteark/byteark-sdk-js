@@ -33,12 +33,12 @@ The following example will create a signed URL that allows to GET the resource w
 ```javascript
 import { ByteArkV2UrlSigner } from 'byteark-sdk';
 
-const signer = new ByteArkV2UrlSigner([
-    'access_id' => '2Aj6Wkge4hi1ZYLp0DBG',
-    'access_secret' => '31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7',
-]);
+const signer = new ByteArkV2UrlSigner({
+    access_id: '2Aj6Wkge4hi1ZYLp0DBG',
+    access_secret: '31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7',
+});
 
-const signedUrl = signer->sign(
+const signedUrl = signer.sign(
     'https://example.cdn.byteark.com/path/to/file.png',
     1514764800
 );
@@ -79,17 +79,17 @@ you may use `/live/` as a path prefix.
 ```javascript
 import { ByteArkV2UrlSigner } from 'byteark-sdk';
 
-const signer = new ByteArkV2UrlSigner([
-    'access_id' => '2Aj6Wkge4hi1ZYLp0DBG',
-    'access_secret' => '31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7',
-]);
+const signer = new ByteArkV2UrlSigner({
+    access_id: '2Aj6Wkge4hi1ZYLp0DBG',
+    access_secret: '31sX5C0lcBiWuGPTzRszYvjxzzI3aCZjJi85ZyB7',
+});
 
-const signedUrl = signer->sign(
+const signedUrl = signer.sign(
     'https://example.cdn.byteark.com/live/playlist.m3u8',
     1514764800,
-    [
-        'path_prefix' => '/live/',
-    ]
+    {
+        path_prefix: '/live/',
+    }
 );
 
 console.log(signedUrl)
