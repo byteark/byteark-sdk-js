@@ -1,6 +1,6 @@
 {
   "name": "byteark-sdk",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "prepublishOnly": "npm test"
   },
   "dependencies": {
-    "qs": "^6.9.1",
+    "qs": "^6.9.4",
     "url-parse": "^1.4.6"
   },
   "devDependencies": {
@@ -29,9 +29,9 @@
     "babel-register": "^6.24.1",
     "babelrc-rollup": "^3.0.0",
     "eslint": "^4.18.2",
-    "istanbul": "^0.4.5",
-    "mocha": "^6.2.2",
-    "release-it": "^12.4.3",
+    "istanbul": "^1.2.3",
+    "mocha": "^6.2.3",
+    "release-it": "^13.6.3",
     "rollup": "^0.41.6",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-node-resolve": "^3.4.0",
