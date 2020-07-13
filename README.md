@@ -3,8 +3,6 @@
 [![NPM Version](https://img.shields.io/npm/v/byteark-sdk.svg)](https://www.npmjs.com/package/byteark-sdk)
 [![Build Status](https://travis-ci.org/byteark/byteark-sdk-js.svg?branch=master)](https://travis-ci.org/byteark/byteark-sdk-js)
 
-## Table of Contents
-
 * [Installation](#installation)
 * [Usages](#usages)
 * [Usage for HLS](#usage-for-hls)
@@ -28,7 +26,19 @@ For sign options argument, you may include method, which determines which HTTP m
 
 ### Usage using ES6
 
-The following example will create a signed URL that allows to GET the resource within 1st January 2018:
+First, create a ByteArkV2UrlSigner instance with `access_id` and `access_secret`.
+(`access_id` is currently optional for ByteArk Fleet).
+
+Then, call `sign` method with URL to sign,
+Unix timestamp that the URL should expired, and sign options.
+
+For sign options argument, you may include `method`, which determines
+which HTTP method is allowed (`GET` is the default is not determined),
+and may includes custom policies that appears in
+[ByteArk Documentation](https://docs.byteark.com/article/secure-url-signature-v2/).
+
+The following example will create a signed URL that allows to GET the resource
+within 1st January 2018 (Unix timestamp is 1514764800):
 
 ```javascript
 import { ByteArkV2UrlSigner } from 'byteark-sdk';
@@ -40,7 +50,10 @@ const signer = new ByteArkV2UrlSigner([
 
 const signedUrl = signer->sign(
     'https://example.cdn.byteark.com/path/to/file.png',
-    1514764800
+    1514764800,
+    {
+        method: 'GET'
+    }
 );
 
 console.log(signedUrl)
@@ -87,9 +100,10 @@ const signer = new ByteArkV2UrlSigner([
 const signedUrl = signer->sign(
     'https://example.cdn.byteark.com/live/playlist.m3u8',
     1514764800,
-    [
-        'path_prefix' => '/live/',
-    ]
+    {
+        method: 'GET',
+        path_prefix: '/live/'
+    }
 );
 
 console.log(signedUrl)
