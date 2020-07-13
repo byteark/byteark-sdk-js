@@ -30,6 +30,7 @@
     "babelrc-rollup": "^3.0.0",
     "eslint": "^4.18.2",
     "istanbul": "^0.4.5",
+    "minimist": ">=0.2.1",
     "mocha": "^6.2.2",
     "release-it": "^12.4.3",
     "rollup": "^0.41.6",
