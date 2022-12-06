@@ -19,7 +19,7 @@
     "prepublishOnly": "npm test"
   },
   "dependencies": {
-    "qs": "^6.9.1",
+    "qs": "^6.9.7",
     "url-parse": "^1.4.6"
   },
   "devDependencies": {
